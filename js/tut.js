@@ -69,29 +69,6 @@ function addLights() {
     scene.add( light );
     scene.add(new THREE.PointLightHelper(light, 3));
 
-
-
-    // spotLight = new THREE.SpotLight(0xffffff, 10, 310, 0.5, 500);
-    //
-    // spotLight.position.set( -500, 0, 100);
-    //
-    // var targetObject = new THREE.Object3D();
-    // scene.add(targetObject);
-    //
-    // spotLight.target = targetObject;
-    //
-    // scene.add(spotLight);
-    //
-    //
-    // spotLight.target.position.x = 20;
-    // spotLight.target.position.y = 50;
-    // spotLight.target.position.z = -100;
-    // scene.add( targetObject );
-    //
-    // scene.add(new THREE.PointLightHelper(spotLight, 1));
-    // //
-    // var hemLight = new THREE.HemisphereLight(0xffe5bb, 0xFFBF00, 0.1);
-    // scene.add(hemLight);
 }
 
 function addSceneElements() {
@@ -123,15 +100,6 @@ function addSceneElements() {
           objsArray.push(obj);
           scene.add(obj.shape);
       }
-    // Sphere
-    // sphere = new THREE.Mesh(new THREE.SphereGeometry(20, 70, 20), redMat);
-    // sphere.position.set(70, 25, -20);
-    // scene.add(sphere);
-    //
-    // // Knot thingy
-    // var knot = new THREE.Mesh(new THREE.TorusKnotGeometry( 40, 3, 100, 16), purpleMat);
-    // knot.position.set(0, 60, 30);
-    // scene.add(knot);
 }
 
 
@@ -145,65 +113,11 @@ function animate() {
     controls.update();
 
     counter += 0.05;
-    // spotLight.target.position.x = Math.sin(counter) * 100;
-
-    // moveSphere();
     objsArray.forEach(obj => {
       obj.move();
     });
 
 }
-
-
-
-
-
-
-
-
-
-
-// function to move sphere
-// function moveSphere() {
-//   if (sphere.position.z <= -100) {
-//     comesClose = true;
-//     goesFar = false;
-//   } else if (sphere.position.z >= 80) {
-//     goesFar = true;
-//     comesClose = false;
-//   }
-//   if (goesFar) {
-//     sphere.position.z--;
-//   } else {
-//     sphere.position.z++;
-//   }
-//
-//   if (sphere.position.x >= 80) {
-//     goesLeft = true;
-//     goesRight = false;
-//   } else if (sphere.position.x <= -80) {
-//     goesLeft = false;
-//     goesRight = true;
-//   }
-//   if (goesLeft) {
-//     sphere.position.x-= 2;
-//   } else {
-//     sphere.position.x+= 2;
-//   }
-//
-//   if (sphere.position.y <= 25) {
-//     goesUp = true;
-//     goesDown = false;
-//   } else if (sphere.position.y >= 100) {
-//     goesUp = false;
-//     goesDown = true;
-//   }
-//   if (goesUp) {
-//     sphere.position.y += 1;
-//   } else if (goesDown) {
-//     sphere.position.y -= 2;
-//   }
-// }
 
 function onWindowResize() {
     camera.aspect = window.innerWidth / window.innerHeight;
