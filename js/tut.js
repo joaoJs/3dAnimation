@@ -31,7 +31,7 @@ function init() {
 
 	// Add the camera
     camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000);
-    camera.position.set(0, 250, 400);
+    camera.position.set(0, 100, 400); // y was 250
 
     // Add scene elements
     addSceneElements();
@@ -52,8 +52,8 @@ function init() {
     window.addEventListener( 'resize', onWindowResize, false );
 
     // Add the orbit controls
-    controls = new THREE.OrbitControls(camera, renderer.domElement);
-    controls.target = new THREE.Vector3(0, 100, 0);
+    // controls = new THREE.OrbitControls(camera, renderer.domElement);
+    // controls.target = new THREE.Vector3(0, 100, 0);
 }
 
 function addLights() {
@@ -110,7 +110,7 @@ function animate() {
 
 	  renderer.render( scene, camera );
     requestAnimationFrame( animate );
-    controls.update();
+    // controls.update();
 
     counter += 0.05;
     objsArray.forEach(obj => {
