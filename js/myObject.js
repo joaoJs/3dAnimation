@@ -4,17 +4,20 @@ class myObject {
     this.y = getRandomPosition();
     this.z = getRandomPosition();
     this.speed = getRandomSpeed();
-    this.comesClose = false;
-    this.goesFar = false;
-    this.goesLeft = false;
-    this.goesRight = false;
+    this.size = getRandomSize();
+    this.comesClose = getRandomBoolean();
+    this.goesFar = getRandomBoolean();
+    this.goesUp = true;
+    this.goesDown = false;
+    this.goesLeft = getRandomBoolean();
+    this.goesRight = getRandomBoolean();
     this.shape = {};
   }
 
   setShape() {
     var color = generateRandomColor();
     var shape = new THREE.Mesh(
-        new THREE.OctahedronGeometry(10, 0),
+        new THREE.OctahedronGeometry(this.size, 0),
         new THREE.MeshStandardMaterial( {
             color: color,
             metalness: 1,
@@ -73,6 +76,15 @@ class myObject {
 
 }
 
+function getRandomBoolean() {
+  const booleans = [true, false];
+  const r = Math.floor(Math.random() * 2);
+  return booleans[r];
+}
+
+function getRandomSize() {
+  return Math.floor(Math.random() * 5) + 2;
+}
 
 function getRandomSpeed() {
   return Math.random() * 2 + 0.5;

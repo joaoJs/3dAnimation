@@ -34,7 +34,7 @@ function init() {
     renderer = new THREE.WebGLRenderer();
     renderer.setSize( window.innerWidth, window.innerHeight );
 
-    renderer.setClearColor( 'rgb(20,10,60)' );
+    renderer.setClearColor( 'rgb(10,5,30)' );
 
     // Append the renderer to the body
     document.body.appendChild( renderer.domElement );
@@ -49,7 +49,10 @@ function init() {
 
 function addLights() {
 
-    var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
+    // var ambientLight = new THREE.AmbientLight( 'rgb(50,25,150)');
+    // scene.add( ambientLight, 5 );
+
+    var directionalLight = new THREE.DirectionalLight( 'rgb(50,25,150)', 2 );
     scene.add( directionalLight );
 
     var light = new THREE.PointLight( 'rgb(200,100,0)', 10, 1000 );
@@ -105,7 +108,7 @@ function addSceneElements() {
 
 
 
-      for (let i = 0; i < 400; i++) {
+      for (let i = 0; i < 500; i++) {
           const obj = new myObject();
           obj.setShape();
           objsArray.push(obj);
