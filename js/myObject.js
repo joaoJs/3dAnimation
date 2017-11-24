@@ -1,7 +1,7 @@
 class myObject {
   constructor() {
     this.x = getRandomPosition();
-    this.y = getRandomPosition();
+    this.y = getRandomPositionY();
     this.z = getRandomPosition();
     this.speed = getRandomSpeed();
     this.size = getRandomSize();
@@ -60,10 +60,10 @@ class myObject {
       this.shape.position.x+= this.speed;
     }
 
-    if (this.shape.position.y <= 0) {
+    if (this.shape.position.y <= -100) {
       this.goesUp = true;
       this.goesDown = false;
-    } else if (this.shape.position.y >= 400) {
+    } else if (this.shape.position.y >= 250) {
       this.goesUp = false;
       this.goesDown = true;
     }
@@ -87,7 +87,7 @@ function getRandomSize() {
 }
 
 function getRandomSpeed() {
-  return Math.random() * 2 + 0.5;
+  return Math.random() * 0.1 + 0.05;
 }
 
 function generateRandomColor() {
@@ -95,5 +95,9 @@ function generateRandomColor() {
 }
 
 function getRandomPosition() {
-    return Math.floor(Math.random() * 100) - 50;
+    return Math.floor(Math.random() * 10) - 5;
+}
+
+function getRandomPositionY() {
+    return Math.floor(Math.random()) - 100;
 }

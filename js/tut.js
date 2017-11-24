@@ -8,21 +8,30 @@ var sphere;
 var objsArray = [];
 
 //var pierrot = new Audio('images/Pierrot_1-1.mp3');
+var ligeti = new Audio('sounds/Ligeti.mp3');
 
 init();
 animate();
 
+// setTimeout(function(){
+//   animate();
+// }, 3000);
+
+
+
 
 
 function init() {
-
+  console.log(ligeti);
+  ligeti.currentTime = 4;
+  ligeti.play();
   //pierrot.play();
 	// Create a scene
     scene = new THREE.Scene();
 
 	// Add the camera
     camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000);
-    camera.position.set(0, 200, 350);
+    camera.position.set(0, 250, 400);
 
     // Add scene elements
     addSceneElements();
@@ -55,7 +64,7 @@ function addLights() {
     var directionalLight = new THREE.DirectionalLight( 'rgb(50,25,150)', 2 );
     scene.add( directionalLight );
 
-    var light = new THREE.PointLight( 'rgb(200,100,0)', 10, 1000 );
+    var light = new THREE.PointLight( 'rgb(200,100,50)', 8, 1000 );
     light.position.set( -500, 0 , 500 );
     scene.add( light );
     scene.add(new THREE.PointLightHelper(light, 3));
