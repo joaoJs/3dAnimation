@@ -6,6 +6,12 @@ var spotLight;
 var counter = 0;
 var sphere;
 var objsArray = [];
+var scene, camera, renderer;
+// var geometry, material, mesh;
+// var particleCount, particles, pMaterial, particleSystem;
+var starField;
+var starsGeometry;
+var starsCount = 10000;
 
 //var pierrot = new Audio('images/Pierrot_1-1.mp3');
 var ligeti = new Audio('sounds/Ligeti.mp3');
@@ -54,6 +60,7 @@ function init() {
     // Add the orbit controls
     // controls = new THREE.OrbitControls(camera, renderer.domElement);
     // controls.target = new THREE.Vector3(0, 100, 0);
+
 }
 
 function addLights() {
@@ -100,6 +107,35 @@ function addSceneElements() {
           objsArray.push(obj);
           scene.add(obj.shape);
       }
+
+      starsGeometry = new THREE.Geometry();
+
+      for ( var i = 0; i < starsCount; i ++ ) {
+
+        var star = new THREE.Vector3();
+        star.velocity = new THREE.Vector3(0, -Math.random(), 0);
+        star.x = THREE.Math.randFloatSpread( 2000 );
+        star.y = THREE.Math.randFloatSpread( 2000 );
+        star.z = THREE.Math.randFloatSpread( 3000 );
+
+        starsGeometry.vertices.push( star );
+
+      }
+
+      var texture = new THREE.TextureLoader().load('images/particle.png');
+
+      var starsMaterial = new THREE.PointsMaterial(
+        {
+          color: 'rgb(100,100,255)', // was 0x888888
+          size: 5,
+          map:  texture,
+          blending: THREE.AdditiveBlending,
+          transparent: true
+        } );
+
+      starField = new THREE.Points( starsGeometry, starsMaterial );
+
+      scene.add( starField );
 }
 
 
@@ -111,6 +147,23 @@ function animate() {
 	  renderer.render( scene, camera );
     requestAnimationFrame( animate );
     // controls.update();
+
+    starField.rotation.y += 0.0001;
+    var sCount = starsCount;
+    while (sCount--) {
+      // get the particle
+      var star =
+        starsGeometry.vertices[sCount];
+
+        // moveStar(star);
+
+        starsGeometry.verticesNeedUpdate = true;
+
+
+    }
+
+      // requestAnimationFrame( animate );
+
 
     counter += 0.05;
     objsArray.forEach(obj => {

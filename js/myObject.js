@@ -5,6 +5,7 @@ class myObject {
     this.z = getRandomPosition();
     this.speed = getRandomSpeed();
     this.size = getRandomSize();
+    this.rotation = getRandomAngle();
     this.comesClose = getRandomBoolean();
     this.goesFar = getRandomBoolean();
     this.goesUp = true;
@@ -27,7 +28,7 @@ class myObject {
     shape.position.x = this.x;
     shape.position.y = this.y;
     shape.position.z = this.z;
-    shape.rotateZ(Math.PI/3);
+    shape.rotateZ(this.rotation);
     shape.castShadow = true;
     // shapesArray.push(shape);
     this.shape = shape;
@@ -74,6 +75,11 @@ class myObject {
     }
   }
 
+}
+
+function getRandomAngle() {
+  const r = Math.random() + 3;
+  return Math.PI / r;
 }
 
 function getRandomBoolean() {
